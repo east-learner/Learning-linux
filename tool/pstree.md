@@ -3,6 +3,46 @@
 `Linux pstree命令将所有行程以树状图显示，树状图将会以 pid (如果有指定) 或是以 init 这个
 基本行程为根 (root)，如果有指定使用者 id，则树状图会只显示该使用者所拥有的行程。`
 
+##### 例子 
+`[root@iZn4pjam1xnbipZ ~]# pstree -a`
+
+```node
+systemd --switched-root --system --deserialize 22
+  ├─AliYunDun
+  │   └─18*[{AliYunDun}]
+  ├─AliYunDunUpdate
+  │   └─3*[{AliYunDunUpdate}]
+  ├─agetty --noclear tty1 linux
+  ├─agetty --keep-baud 115200 38400 9600 ttyS0 vt220
+  ├─aliyun-service
+  │   └─2*[{aliyun-service}]
+  ├─atd -f
+  ├─auditd
+  │   └─{auditd}
+  ├─chronyd
+  ├─containerd
+  │   └─8*[{containerd}]
+  ├─crond -n
+  ├─dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+  ├─dhclient -1 -q -lf /var/lib/dhclient/dhclient--eth0.lease -pf /var/run/dhclient-eth0.pid -H AliYun eth0
+  ├─dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+  │   └─8*[{dockerd}]
+  ├─lvmetad -f
+  ├─polkitd --no-debug
+  │   └─6*[{polkitd}]
+  ├─rsyslogd -n
+  │   └─2*[{rsyslogd}]
+  ├─sshd -D
+  │   └─sshd    
+  │       └─bash
+  │           └─pstree -a
+  ├─systemd-journal
+  ├─systemd-logind
+  ├─systemd-udevd
+  └─tuned -Es /usr/sbin/tuned -l -P
+      └─4*[{tuned}]
+
+```
 
 ##### :one: [语法](#top)
 ```shell
